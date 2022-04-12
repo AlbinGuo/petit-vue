@@ -1,0 +1,1 @@
+{"version":3,"file":"vue.js","sources":["../../src/index.js"],"sourcesContent":["function Vue(options){\r\n  console.log(options)\r\n}\r\nexport default Vue;"],"names":["Vue","options","console","log"],"mappings":";;;;;;EAAA,SAASA,GAAT,CAAaC,OAAb,EAAqB;EACnBC,EAAAA,OAAO,CAACC,GAAR,CAAYF,OAAZ,CAAA,CAAA;EACD;;;;;;;;"}
