@@ -1,4 +1,5 @@
+// Vue的核心源码
 function Vue(options){
-  console.log(options)
+  // Vue的初始化操作
 }
 export default Vue;

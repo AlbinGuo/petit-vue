@@ -4,8 +4,8 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Vue = factory());
 })(this, (function () { 'use strict';
 
-  function Vue(options) {
-    console.log(options);
+  // Vue的核心源码
+  function Vue(options) {// Vue的初始化操作
   }
 
   return Vue;
