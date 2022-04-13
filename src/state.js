@@ -14,7 +14,10 @@ function initProps(vm) {}
 function initMethods(vm) {}
 
 function initData(vm) {
-  console.log("vm.$options:", vm.$options.data);
+  // 传递过来的data，此时data可能是函数，也可能是对象{}
+  // 但最终都要转为对象
+  let data = vm.$options.data;
+  data = vm._data = typeof data === "function" ? data.call(vm) : data || {};
 }
 
 function initComputed(vm) {}

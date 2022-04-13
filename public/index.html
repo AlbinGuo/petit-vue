@@ -10,7 +10,7 @@
   <body>
     <div id="app">hello</div>
     <script>
-      new Vue({
+      let vm = new Vue({
         el: "#app",
         data() {
           return {
@@ -21,6 +21,7 @@
         computed() {},
         watch() {}
       });
+      console.log("vm:", vm._data);
     </script>
   </body>
 </html>
