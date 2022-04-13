@@ -21,9 +21,7 @@ function initData(vm) {
   let data = vm.$options.data;
   data = vm._data = typeof data === "function" ? data.call(vm) : data || {};
   // 对象劫持，转为响应式数据->MVVM
-  Object.keys(data).forEach(key => {
-    observe(data, key, data[key]);
-  });
+  observe(data);
 }
 
 function initComputed(vm) {}

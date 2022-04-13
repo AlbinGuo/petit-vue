@@ -15,7 +15,18 @@
         data() {
           return {
             name: "jack",
-            age: 22
+            age: 22,
+            address: {
+              no: 21,
+              unit: "三单元",
+              animal: ["dog", "cat"],
+              pets: {
+                kind: "dog",
+                food: {
+                  name: "狗粮"
+                }
+              }
+            }
           };
         },
         computed() {},
@@ -23,6 +34,9 @@
       });
       setTimeout(() => {
         vm._data.name = "赵四";
+        vm._data.age = 30;
+        // vm._data.address = { aa: 111, bb: { c: 111 } };
+        console.log(vm._data);
       }, 2000);
     </script>
   </body>
