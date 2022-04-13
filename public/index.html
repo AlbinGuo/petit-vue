@@ -21,7 +21,9 @@
         computed() {},
         watch() {}
       });
-      console.log("vm:", vm._data);
+      setTimeout(() => {
+        vm._data.name = "赵四";
+      }, 2000);
     </script>
   </body>
 </html>
