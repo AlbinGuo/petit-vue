@@ -3,6 +3,7 @@
  * Object.defineProperty不兼容IE8以及以下版本
  */
 import { isObject } from "./util/index";
+import {arrayMethods} from "./array";
 
 class Observer {
   constructor(value) {
@@ -11,6 +12,7 @@ class Observer {
     if(Array.isArray(value)) {
       // 如果是数组的话，并不会对索引进行观测，因为会导致性能问题
       // 前端开发中很少去操作索引 push shift unshift
+      value.__proto__ = arrayMethods;
       // 如果数组中放的是对象，再进行观测
       this.observerArray(value)
     }else{

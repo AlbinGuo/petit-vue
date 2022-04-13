@@ -43,6 +43,8 @@
     return obj !== null && _typeof(obj) === "object";
   }
 
+  impo;
+
   var Observer = /*#__PURE__*/function () {
     function Observer(value) {
       _classCallCheck(this, Observer);
@@ -52,7 +54,8 @@
       if (Array.isArray(value)) {
         // 如果是数组的话，并不会对索引进行观测，因为会导致性能问题
         // 前端开发中很少去操作索引 push shift unshift
-        // 如果数组中放的是对象，再进行观测
+        value.__proto__ = arrayMethods; // 如果数组中放的是对象，再进行观测
+
         this.observerArray(value);
       } else {
         this.walk(value);
