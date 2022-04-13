@@ -1,3 +1,5 @@
+import { observe } from "./observe";
+
 export function stateMixin() {}
 
 export function initState(vm) {
@@ -18,6 +20,8 @@ function initData(vm) {
   // 但最终都要转为对象
   let data = vm.$options.data;
   data = vm._data = typeof data === "function" ? data.call(vm) : data || {};
+  // 对象劫持，转为响应式数据->MVVM
+  observe(data);
 }
 
 function initComputed(vm) {}
