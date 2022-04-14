@@ -43,13 +43,23 @@
     return obj !== null && _typeof(obj) === "object";
   }
 
+  impo;
+
   var Observer = /*#__PURE__*/function () {
     function Observer(value) {
       _classCallCheck(this, Observer);
 
       // Vue中如果数据太复杂，嵌套的层次太多，需要递归去解析对象中的属性，以此增加get/set方法
       // 这样比较耗性能，所以Vue3中使用Proxy来解决了这个问题，提升复杂数据结构下数据解析带来的性能问题
-      this.walk(value);
+      if (Array.isArray(value)) {
+        // 如果是数组的话，并不会对索引进行观测，因为会导致性能问题
+        // 前端开发中很少去操作索引 push shift unshift
+        value.__proto__ = arrayMethods; // 如果数组中放的是对象，再进行观测
+
+        this.observerArray(value);
+      } else {
+        this.walk(value);
+      }
     }
     /**
      * Vue 源码中使用的是for循环处理 observer/index.js
@@ -72,6 +82,14 @@
         var keys = Object.keys(data);
         keys.forEach(function (key) {
           defineReactive(data, key, data[key]);
+        });
+      }
+    }, {
+      key: "observerArray",
+      value: function observerArray(items) {
+        // 遍历数组中的每一项
+        items.forEach(function (item) {
+          observe(item);
         });
       }
     }]);
