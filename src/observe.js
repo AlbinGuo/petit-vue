@@ -2,11 +2,15 @@
  * 对传递过来的data对象使用Object.defineProperty进行重新定义(添加get/set方法) - ES5
  * Object.defineProperty不兼容IE8以及以下版本
  */
-import { isObject } from "./util/index";
+import { isObject, def } from "./util/index";
 import {arrayMethods} from "./array";
 
 class Observer {
   constructor(value) {
+    // 给每一个数组中push、unshift进来的对象添加__ob__属性
+    // value.__ob__ = this 
+    def(value, '__ob__', this)
+
     // Vue中如果数据太复杂，嵌套的层次太多，需要递归去解析对象中的属性，以此增加get/set方法
     // 这样比较耗性能，所以Vue3中使用Proxy来解决了这个问题，提升复杂数据结构下数据解析带来的性能问题
     if(Array.isArray(value)) {
@@ -16,6 +20,7 @@ class Observer {
       // 如果数组中放的是对象，再进行观测
       this.observerArray(value)
     }else{
+      // 对对象进行观测
       this.walk(value);
     }
   }

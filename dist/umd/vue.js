@@ -41,6 +41,18 @@
 
   function isObject(obj) {
     return obj !== null && _typeof(obj) === "object";
+  } // 定义一个defineProperty
+
+  function def(obj, key, val) {
+    Object.defineProperty(obj, key, {
+      enumerable: false,
+      // 不可枚举，不可被遍历
+      configurable: true,
+      // 可配置
+      value: val,
+      writable: true // 可写
+
+    });
   }
 
   // 需要重写数组中的7个方法， push pop shift unshift splice sort reverse
@@ -49,13 +61,38 @@
   // arrayMethods.__proto__ = arrayProto 将arrayMethods的原型指向数组的原型
 
   var arrayMethods = Object.create(arrayProto);
+  var methodsToPatch = ['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'];
+  methodsToPatch.forEach(function (method) {
+
+    arrayMethods[method] = function mutator() {
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      // 调用原生的Array.prototype上的方法，此时args还没有被监测
+      arrayProto[method].apply(this, args); // push,unshift添加的元素可能是对象，需要观察
+
+      this.__ob__;
+
+      switch (method) {
+        case 'push':
+        case 'unshift':
+
+        case 'splice':
+          args.slice(2);
+      }
+    };
+  });
 
   var Observer = /*#__PURE__*/function () {
     function Observer(value) {
       _classCallCheck(this, Observer);
 
-      // Vue中如果数据太复杂，嵌套的层次太多，需要递归去解析对象中的属性，以此增加get/set方法
+      // 给每一个数组中push、unshift进来的对象添加__ob__属性
+      // value.__ob__ = this 
+      def(value, '__ob__', this); // Vue中如果数据太复杂，嵌套的层次太多，需要递归去解析对象中的属性，以此增加get/set方法
       // 这样比较耗性能，所以Vue3中使用Proxy来解决了这个问题，提升复杂数据结构下数据解析带来的性能问题
+
       if (Array.isArray(value)) {
         // 如果是数组的话，并不会对索引进行观测，因为会导致性能问题
         // 前端开发中很少去操作索引 push shift unshift
@@ -63,6 +100,7 @@
 
         this.observerArray(value);
       } else {
+        // 对对象进行观测
         this.walk(value);
       }
     }
