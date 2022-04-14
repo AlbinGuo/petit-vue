@@ -7,7 +7,7 @@ import {arrayMethods} from "./array";
 
 class Observer {
   constructor(value) {
-    // 给每一个数组中push、unshift进来的对象添加__ob__属性
+    // 给初始对象或者，每一个数组中push、unshift进来的对象添加__ob__属性
     // value.__ob__ = this 
     def(value, '__ob__', this)
 
@@ -45,6 +45,7 @@ class Observer {
   }
 
   observerArray(items) {
+    console.log('items:',items)
     // 遍历数组中的每一项
     items.forEach(item => {
       observe(item);

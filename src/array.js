@@ -21,7 +21,7 @@ methodsToPatch.forEach(method => {
   // 给数组arrayMethods上添加要重写的这七种方法
   arrayMethods[method] = function mutator (...args) {
     // 调用原生的Array.prototype上的方法，此时args还没有被监测
-    arrayProto[method].apply(this, args)
+    const result = arrayProto[method].apply(this, args)
     // push,unshift添加的元素可能是对象，需要观察
     let inserted; // 当前数组要插入的元素
     const ob = this.__ob__
@@ -29,15 +29,18 @@ methodsToPatch.forEach(method => {
       case 'push':
       case 'unshift':
         inserted = args
+        break
       case 'splice':
         inserted = args.slice(2)
+        break
       default:
         break;
-      // 对inserted进行观察
-      if(inserted) ob.observerArray(inserted)
-
     }
+    // 对inserted进行观察
+    console.log('inserted',inserted)
+    if(inserted) ob.observerArray(inserted)
     
+    return result
   }
   
 })

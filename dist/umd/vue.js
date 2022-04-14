@@ -70,17 +70,27 @@
       }
 
       // 调用原生的Array.prototype上的方法，此时args还没有被监测
-      arrayProto[method].apply(this, args); // push,unshift添加的元素可能是对象，需要观察
+      var result = arrayProto[method].apply(this, args); // push,unshift添加的元素可能是对象，需要观察
 
-      this.__ob__;
+      var inserted; // 当前数组要插入的元素
+
+      var ob = this.__ob__;
 
       switch (method) {
         case 'push':
         case 'unshift':
+          inserted = args;
+          break;
 
         case 'splice':
-          args.slice(2);
-      }
+          inserted = args.slice(2);
+          break;
+      } // 对inserted进行观察
+
+
+      console.log('inserted', inserted);
+      if (inserted) ob.observerArray(inserted);
+      return result;
     };
   });
 
@@ -88,7 +98,7 @@
     function Observer(value) {
       _classCallCheck(this, Observer);
 
-      // 给每一个数组中push、unshift进来的对象添加__ob__属性
+      // 给初始对象或者，每一个数组中push、unshift进来的对象添加__ob__属性
       // value.__ob__ = this 
       def(value, '__ob__', this); // Vue中如果数据太复杂，嵌套的层次太多，需要递归去解析对象中的属性，以此增加get/set方法
       // 这样比较耗性能，所以Vue3中使用Proxy来解决了这个问题，提升复杂数据结构下数据解析带来的性能问题
@@ -130,7 +140,8 @@
     }, {
       key: "observerArray",
       value: function observerArray(items) {
-        // 遍历数组中的每一项
+        console.log('items:', items); // 遍历数组中的每一项
+
         items.forEach(function (item) {
           observe(item);
         });
