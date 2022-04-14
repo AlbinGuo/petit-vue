@@ -8,8 +8,14 @@
     "build:dev": "rollup -c",
     "serve": "cross-env ENV=development rollup -c -w"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "vue"
+  ],
+  "author": "guonan",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/guonan01/petit-vue.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.17.9",
