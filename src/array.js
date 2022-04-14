@@ -14,3 +14,7 @@ const methodsToPatch = [
   'sort',
   'reverse'
 ]
+
+methodsToPatch.forEach(method => {
+  const original = arrayProto[method]
+})
