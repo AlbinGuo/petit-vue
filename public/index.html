@@ -18,10 +18,11 @@
             provice:{name:'河北'},
             name: "jack",
             age: 22,
+            op:[1,2,3,4],
             address: {
               no: 21,
               unit: "三单元",
-              nums:[11,22,33,function a(){}],
+              nums:[11,22,33,11,22],
               animal: [{dep:'法务部'}, 0, {dep: '市场部'}, {dep: '财务部'}],
               pets: {
                 kind: "dog",
@@ -37,6 +38,7 @@
       });
       setTimeout(() => {
         vm._data.name = "赵四";
+        vm._data.op.splice(2, 1, {a:1})
         vm._data.age = 30;
         vm._data.city.push({name: '西安'})
         // vm._data.address = { aa: 111, bb: { c: 111 } };
