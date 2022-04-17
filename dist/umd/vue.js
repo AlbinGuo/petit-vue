@@ -198,7 +198,14 @@
       var vm = this;
       vm.$options = options; // 状态初始化: 初始化顺序：props-methods-data-computed-watch
 
-      initState(vm);
+      initState(vm); // 如果用户传递了el, 则实现挂载流程，将页面渲染出来
+
+      if (vm.$options.el) {
+        // 挂载模板
+        vm.$mount(vm.$options.el);
+      }
+
+      Vue.prototype.$mount = fun;
     };
   }
 
