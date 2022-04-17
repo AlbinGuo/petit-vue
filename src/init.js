@@ -1,4 +1,6 @@
 import { initState } from "./state";
+import { compileToFunction } from "./compiler/index.js";
+
 // 在Vue原型上绑定私有的初始化方法_init
 export function initMixin(Vue) {
   Vue.prototype._init = function(options) {
@@ -25,7 +27,10 @@ export function initMixin(Vue) {
       if(!template && el){
         template = el.outerHTML
       }
-      console.log(template)
+      
+      // template编译成render函数
+      const render = compileToFunction(template)
+      options.render = render
     }
   }
   

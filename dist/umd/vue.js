@@ -193,6 +193,11 @@
     observe(data);
   }
 
+  function compileToFunction(template) {
+    console.log('---template', template);
+    return function render() {};
+  }
+
   function initMixin(Vue) {
     Vue.prototype._init = function (options) {
       var vm = this;
@@ -218,9 +223,11 @@
 
         if (!template && el) {
           template = el.outerHTML;
-        }
+        } // template编译成render函数
 
-        console.log(template);
+
+        var render = compileToFunction(template);
+        options.render = render;
       }
     };
   }
