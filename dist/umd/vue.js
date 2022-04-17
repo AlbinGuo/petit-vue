@@ -204,8 +204,24 @@
         // 挂载模板
         vm.$mount(vm.$options.el);
       }
+    };
 
-      Vue.prototype.$mount = fun;
+    Vue.prototype.$mount = function (el) {
+      var vm = this;
+      var options = vm.$options; // 获取dom元素
+
+      el = document.querySelector(el); // vue解析template的执行顺序：render -> template:'#app' -> outerHTML
+
+      if (!options.render) {
+        // 对模板进行编译
+        var template = options.template; // 取出模板
+
+        if (!template && el) {
+          template = el.outerHTML;
+        }
+
+        console.log(template);
+      }
     };
   }
 

@@ -8,7 +8,21 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="app">hello</div>
+    <div id="app">
+      <p>{{ name }}</p>
+      <span>{{ age }}</span>
+    </div>
+    <!-- // render函数中_c：createElement，_v：createTextVnode，_s：参数有可能是对象
+    render(){
+      return _c('div', 
+      {
+        id: 'app'
+      },
+      [
+         _c('p',undefined,_v(_s(name))),
+         _c('span',undefined,_v(_s(age)))
+      ])
+    } -->
     <script>
       let vm = new Vue({
         el: "#app",
