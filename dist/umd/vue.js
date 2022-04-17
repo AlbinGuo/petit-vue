@@ -193,6 +193,11 @@
     observe(data);
   }
 
+  // 模板编译的正则表达式
+
+  "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + unicodeRegExp.source + "]*"; // <aaa:bbb>
+  // AST语法树：用对象来描述js的原生语法，虚拟DOM:用对象描述dom节点
+
   function compileToFunction(template) {
     console.log('---template', template);
     return function render() {};
