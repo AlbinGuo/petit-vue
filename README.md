@@ -1,13 +1,14 @@
-# 步骤
 
-## 一、初始化
+## This repo is for Petit-vue
+You are looking at the repository for Petit-vue. 
 
-### 1. Vue 初始化，构建 Vue 实例
+## Introduction
 
-### 2. 状态初始化
+Petit-vue is a stripped-down version of the VUE framework based on Vue2.6+, removing all edge cases.</br>
+The main feature of it is to strip out the core logic in the Vue2.6 source code, leaving only the core logic, with detailed Chinese annotations and complete output to help you quickly understand the framework core operational process.
 
-### 3. 对象劫持
+## License
 
-### 4. 数组劫持
+[MIT](https://opensource.org/licenses/MIT)
 
-### 5. 模板编译
+Copyright (c) 2021-present, GuoNan
