@@ -1,6 +1,6 @@
 {
   "name": "petit-vue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A small and delicate Vue.",
   "files": [
     "dist"
