@@ -5,7 +5,7 @@
   "files": [
     "dist"
   ],
-  "main": "dist/vue.js",
+  "main": "dist/umd/petit-vue.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:dev": "rollup -c",
@@ -18,7 +18,7 @@
   "author": "guonan",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AlbinGuo/petit-vue"
+    "url": "git://github.com/AlbinGuo/petit-vue.git"
   },
   "license": "MIT",
   "devDependencies": {
