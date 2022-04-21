@@ -19,6 +19,30 @@ The main feature of it is to strip out the core logic in the Vue2.6 source code,
 npm install petit-vue
 ```
 
+## Structure
+```
+
+src
+|-- index.js
+|-- init.js
+|-- lifecycle.js
+|-- render.js
+|-- state.js
+|
+|-- compiler
+    |-- index.js
+    |-- parser-html.js
+|-- observer
+    |-- array.js
+    |-- index.js
+    |-- watcher.js
+|-- util
+    |-- index.js
+|-- vdom
+    |-- create-element.js
+    |-- patch.js
+```
+
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
