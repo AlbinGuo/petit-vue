@@ -8,23 +8,10 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="app">
+    <div id=app>
       <p>{{ name }}</p>
       <span>{{ age }}</span>
     </div>
-    <!-- // render函数中_c：createElement，_v：createTextVnode，_s：参数有可能是对象
-    render(){
-      return with(this){
-        _c('div', 
-      {
-        id: 'app'
-      },
-      [
-         _c('p',undefined,_v(_s(name))),
-         _c('span',undefined,_v(_s(age)))
-      ])
-      }
-    } -->
     <script>
       let vm = new Vue({
         el: "#app",
@@ -33,33 +20,13 @@
             city:[{name: '北京'}],
             provice:{name:'河北'},
             name: "jack",
-            age: 22,
-            op:[1,2,3,4],
-            address: {
-              no: 21,
-              unit: "三单元",
-              nums:[11,22,33,11,22],
-              animal: [{dep:'法务部'}, 0, {dep: '市场部'}, {dep: '财务部'}],
-              pets: {
-                kind: "dog",
-                food: {
-                  name: "狗粮"
-                }
-              }
-            }
+            age: 22
           };
         },
         computed() {},
         watch() {}
       });
-      setTimeout(() => {
-        vm._data.name = "赵四";
-        vm._data.op.splice(2, 1, {a:1})
-        vm._data.age = 30;
-        vm._data.city.push({name: '西安'})
-        // vm._data.address = { aa: 111, bb: { c: 111 } };
-        console.log(vm._data);
-      }, 2000);
+
     </script>
   </body>
 </html>
