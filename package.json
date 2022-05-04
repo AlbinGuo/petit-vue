@@ -1,22 +1,26 @@
 {
   "name": "petit-vue",
-  "version": "1.0.0",
-  "description": "petit-vue by guo",
-  "main": "index.js",
+  "version": "0.1.1",
+  "description": "A small and delicate Vue.",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/umd/petit-vue.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:dev": "rollup -c",
     "serve": "cross-env ENV=development rollup -c -w"
   },
   "keywords": [
+    "petit-vue",
     "vue"
   ],
   "author": "guonan",
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/guonan01/petit-vue.git"
+    "url": "git://github.com/AlbinGuo/petit-vue.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",

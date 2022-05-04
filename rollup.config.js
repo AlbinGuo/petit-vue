@@ -4,7 +4,7 @@ import serve from "rollup-plugin-serve";
 export default {
   input: "./src/index.js",   // 以哪个文件作为打包的入口
   output: {
-    file: "dist/umd/vue.js",    // 出口路径
+    file: "dist/umd/petit-vue.js",    // 出口路径
     name: "Vue",            // 全局变量名
     format: "umd",          // 打包格式
     sourcemap: true         // 是否生成sourcemap
