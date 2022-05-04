@@ -1,4 +1,5 @@
 import { observe } from "./observe";
+import { proxy } from './proxy/index';
 
 export function stateMixin() {}
 
@@ -20,6 +21,14 @@ function initData(vm) {
   // 但最终都要转为对象
   let data = vm.$options.data;
   data = vm._data = typeof data === "function" ? data.call(vm) : data || {};
+  // 对象劫持，用户改变了数据，希望可以得到通知，然后刷新页面
+  // MVVM模式，数据变化可以驱动视图变化
+
+  // 为了更方便的使用，希望可有直接使用vm.xxx的方式
+  for(let key in data) {
+    proxy(vm, '_data', key);
+  }
+
   // 对象劫持，转为响应式数据->MVVM
   observe(data);
 }

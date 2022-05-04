@@ -11,3 +11,15 @@ export function def (obj, key, val) {
     writable: true // 可写
   })
 }
+
+export function proxy(vm, source, key) {
+  Object.defineProperty(vm ,key, {
+    get() {
+      // this._data.name
+      return vm[source][key];
+    },
+    set(newVal) {
+      vm[source][key] = newVal;
+    }
+  })
+}
