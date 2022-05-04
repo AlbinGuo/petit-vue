@@ -16,9 +16,41 @@
  var endTag = new RegExp(("^<\\/" + qnameCapture + "[^>]*>"));
  var doctype = /^<!DOCTYPE [^>]+>/i;
  var defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g; // {{ name }}
+ 
+
+ let root = null    // AS语法树的树根
+ let currentParent  // 标识当前父节点
+ let stack = []     // 栈，用于存储父节点
+ const ELEMENT_TYPE = 1 // 元素类型
+ const TEXT_TYPE = 3  // 文本类型
+ function createASTElement(tagName, attrs) {
+    return {
+      tag: tagName,
+      type: ELEMENT_TYPE,
+      children: [],
+      attrs,
+      parent: null  
+    }
+ }  
+
+
 
  function start (tagName, attrs) {
-  console.log("开始标签：",tagName, "属性", attrs)
+    // 遇到开始标签就创建一个AST元素
+    let element = createASTElement(tagName, attrs)
+    if(!root){
+      root = element
+    }
+    currentParent = element // 把当前元素标记成AST树的父节点
+    stack.push(element) // 把当前元素放入栈中
+ }
+
+ function chars(text) {
+  console.log('============text-===',text)
+ }
+
+ function end(tagName) {
+  console.log('结束标签：', tagName)
  }
 
  function parseHTML (html) {
@@ -28,9 +60,27 @@
       if(textEnd == 0){
         // 如果当前索引为0，则是一个标签【开始标签，或者结束标签】
         let startTagMatch = parseStartTag()
-        // 解析开始标签
-        start(startTagMatch.tagName, startTagMatch.attrs)
-        break
+        if(startTagMatch) {
+          // 解析开始标签
+          start(startTagMatch.tagName, startTagMatch.attrs)
+          continue
+        }
+        let endTagMatch = html.match(endTag)
+        if(endTagMatch) {
+          // 解析结束标签
+          advance(endTagMatch[0].length)
+          end(endTagMatch[1])
+          continue
+        }
+      }
+      
+      let text;
+      if(textEnd >= 0) {
+        text = html.substring(0, textEnd)
+      }
+      if(text){
+        advance(text.length)
+        chars(text)
       }
     }
 
@@ -39,6 +89,7 @@
       html = html.substring(n)
     }
 
+    // 解析开始标签
     function parseStartTag() {
       let start = html.match(startTagOpen)
       // 匹配开始标签
