@@ -34,7 +34,11 @@
  }  
 
 
-
+/**
+ * 解析开始标签
+ * @param {*} tagName 
+ * @param {*} attrs 
+ */
  function start (tagName, attrs) {
     // 遇到开始标签就创建一个AST元素
     let element = createASTElement(tagName, attrs)
@@ -45,13 +49,38 @@
     stack.push(element) // 把当前元素放入栈中
  }
 
+
+ /**
+  * 处理文本
+  * @param {text} text 
+  */
  function chars(text) {
-  console.log('============text-===',text)
+    text = text.replace(/\s/g, '')
+    if(text){
+      currentParent.children.push({
+        type: TEXT_TYPE,
+        text
+      })
+    }
  }
 
+
+ /**
+  * 闭合标签
+  * @param {} tagName 
+  */
+ // eg. <div><p></p></div>
  function end(tagName) {
-  console.log('结束标签：', tagName)
+    // 拿到的是AST对象
+    let element = stack.pop()
+    // 标识当前标签是属于这个div的子元素
+    currentParent = stack[stack.length - 1]
+    if(currentParent){
+      element.parent = currentParent
+      currentParent.children.push(element) //实现了树的父子关系
+    }
  }
+
 
  function parseHTML (html) {
     // 循环解析html
@@ -117,11 +146,13 @@
       }
       
     }
+    return root
  }
 
 // AST语法树：用对象来描述js的原生语法，虚拟DOM:用对象描述dom节点
 export function compileToFunction (template) {
   let root = parseHTML(template)
+  console.log('----root----', root)
   return function render(){
 
   }
