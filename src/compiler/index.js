@@ -52,7 +52,6 @@
       if(lastIndex < text.length) {
         tokens.push(JSON.stringify(text.slice(lastIndex)))
       }
-      console.log('--toens---', tokens)
       return `_v(${tokens.join('+')})`
    }
  }
@@ -64,7 +63,6 @@
       el.attrs.length ? genProps(el.attrs) : 'undefined' // undefined => {}
     }${children.length ? `,${children}` : ''})
     `
-    console.log('==code', code)
     return code
  }
 
@@ -75,13 +73,13 @@ export function compileToFunction (template) {
   
   // 需要将ast语法树生成最终的render函数，也就是字符串的拼接（模板引擎）
   let code = generate(root)
-  console.log('code===', code)
 
+  // 所有的模板引擎实现都需要 使用 new Function() + with
+  let renderFn = new Function(`with(this) {return ${code}}`)
+  console.log('renderFn===',renderFn)
   // <div id='app'><p>hello {{ name }}</p>world</div>
   // _c('div', {id:'app'}, _c('p', undefined, _v('hello', + _s(name))), _v('world'))
-  return function render(){
-
-  }
+  return renderFn
 }
 
 {/* <div id='app'>
