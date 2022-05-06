@@ -1,5 +1,6 @@
 import { initState } from "./state";
 import { compileToFunction } from "./compiler/index.js";
+import { mountComponent } from "./lifecycle"
 
 // 在Vue原型上绑定私有的初始化方法_init
 export function initMixin(Vue) {
@@ -27,11 +28,11 @@ export function initMixin(Vue) {
       if(!template && el){
         template = el.outerHTML
       }
-      console.log('---template----', template)
       // template编译成render函数、
       const render = compileToFunction(template)
       options.render = render
     }
+    mountComponent(vm, el)
   }
   
 }

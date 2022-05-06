@@ -12,6 +12,7 @@ export function def (obj, key, val) {
   })
 }
 
+// 取值时的代理
 export function proxy(vm, source, key) {
   Object.defineProperty(vm ,key, {
     get() {

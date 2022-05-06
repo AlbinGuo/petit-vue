@@ -1,5 +1,5 @@
-import { observe } from "./observe";
-// import { proxy } from './proxy/index';
+import { observe } from "./observer/observe";
+import { proxy } from './util/index';
 
 export function stateMixin() {}
 
@@ -25,9 +25,9 @@ function initData(vm) {
   // MVVM模式，数据变化可以驱动视图变化
 
   // 为了更方便的使用，希望可有直接使用vm.xxx的方式
-  // for(let key in data) {
-  //   proxy(vm, '_data', key);
-  // }
+  for(let key in data) {
+    proxy(vm, '_data', key);
+  }
 
   // 对象劫持，转为响应式数据->MVVM
   observe(data);

@@ -2,7 +2,7 @@
  * 对传递过来的data对象使用Object.defineProperty进行重新定义(添加get/set方法) - ES5
  * Object.defineProperty不兼容IE8以及以下版本
  */
-import { isObject, def } from "./util/index";
+import { isObject, def } from "../util/index";
 import {arrayMethods} from "./array";
 
 class Observer {
