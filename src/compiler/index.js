@@ -40,7 +40,7 @@
      // _v('a', _s(name), 'b', _s(age), 'c')
       let tokens = []
       let match, index
-      let lastIndex = defaultTagRE.lastIndex = 0
+      let lastIndex = defaultTagRE.lastIndex = 0 // 只要是全局匹配，就需要重置lastIndex到0
       while(match = defaultTagRE.exec(text)) {
         index = match.index
         if(index > lastIndex) {
