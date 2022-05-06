@@ -1,4 +1,5 @@
  import { parseHTML } from './parser-html' 
+ var defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g; // {{ name }}
 
  function genProps(attrs) {
    let str = "";
@@ -19,14 +20,51 @@
    return `{${str.slice(0, -1)}}`
  }
 
+ function genChildren(el) {
+    let children = el.children
+    if(children && children.length > 0) {
+      return `${children.map(c => gen(c)).join(',')}`
+    }else {
+      return false
+    }
+ }
+
+ function gen(node) {
+   if(node.type == 1) {
+     // 元素标签
+     return generate(node)
+   }else {
+     // 字符串
+     let text = node.text
+     // a {{ name }} b {{ age }} c
+     // _v('a', _s(name), 'b', _s(age), 'c')
+      let tokens = []
+      let match, index
+      let lastIndex = defaultTagRE.lastIndex = 0
+      while(match = defaultTagRE.exec(text)) {
+        index = match.index
+        if(index > lastIndex) {
+          tokens.push(JSON.stringify(text.slice(lastIndex, index)))
+        }
+        tokens.push(`_s(${match[1].trim()})`)
+        lastIndex = index + match[0].length
+      }
+      if(lastIndex < text.length) {
+        tokens.push(JSON.stringify(text.slice(lastIndex)))
+      }
+      console.log('--toens---', tokens)
+      return `_v(${tokens.join('+')})`
+   }
+ }
+
  // _c('div', {id:'app', style: {color: red; background: blue;}}, _c('p', undefined, _v('hello', + _s(name))), _v('world'))
  function generate(el) {
+   let children = genChildren(el)
     let code = `_c("${el.tag}", ${
       el.attrs.length ? genProps(el.attrs) : 'undefined' // undefined => {}
-    })
-
+    }${children.length ? `,${children}` : ''})
     `
-
+    console.log('==code', code)
     return code
  }
 
