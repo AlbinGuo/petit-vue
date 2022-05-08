@@ -8,6 +8,19 @@ A small and delicate Vue.
   <a href="https://www.npmjs.com/package/petit-vue"><img src="https://img.shields.io/npm/v/petit-vue?color=729B1B&label="></a>
 <p>
 
+## schedule
+【completed】
+- Data monitoring
+- Data hijacking
+- Template compilation
+- Html parser
+- Template convert to AST
+- Code generate
+- generate render function
+- Initialize the rendering process
+【On going】
+- Life cycle merger strategy
+
 
 ## Introduction
 
