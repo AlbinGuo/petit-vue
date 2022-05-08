@@ -8,9 +8,13 @@
     <title>Document</title>
   </head>
   <body>
-    <div id=app style="color: red; background: blue;">
+    <div id='app' class="wrap container" style="color: red;background: blue;">
       hello<p>world {{ name }}</p>
       <span>{{ age }}</span>
+      <ul>
+        <li class="first-li" style="color: green;">aaa</li>
+        <li>bbb</li>
+      </ul>
     </div>
     <script>
       let vm = new Vue({
