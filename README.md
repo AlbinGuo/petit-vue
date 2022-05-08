@@ -9,7 +9,9 @@ A small and delicate Vue.
 <p>
 
 ## schedule
+
 【completed】
+
 - Data monitoring
 - Data hijacking
 - Template compilation
@@ -18,9 +20,10 @@ A small and delicate Vue.
 - Code generate
 - generate render function
 - Initialize the rendering process
-【On going】
-- Life cycle merger strategy
 
+【On going】
+
+- Life cycle merger strategy
 
 ## Introduction
 
@@ -28,11 +31,13 @@ Petit-vue is a stripped-down version of the VUE framework based on Vue2.6+, remo
 The main feature of it is to strip out the core logic in the Vue2.6 source code, leaving only the core logic, with detailed Chinese annotations and complete output to help you quickly understand the framework core operational process.
 
 ## Usage
+
 ```
 npm install petit-vue
 ```
 
 ## Structure
+
 ```
 
 src
