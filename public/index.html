@@ -11,7 +11,7 @@
     <div id='app' class="wrap container" style="color: red;background: blue;">
       hello<p>world {{ name }}</p>
       <span>{{ age }}</span>
-      <span>----{{ age }}</span>
+      <span>----{{ height.height }}</span>
       <ul>
         <li class="first-li" style="color: green;">aaa</li>
         <li>bbb</li>
@@ -25,7 +25,8 @@
             city:[{name: '北京'}],
             provice:{name:'河北'},
             name: "jack",
-            age: 22
+            age: 22,
+            height: {height: 180}
           };
         },
         computed() {},
