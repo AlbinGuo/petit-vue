@@ -21,9 +21,21 @@ A small and delicate Vue.
 - generate render function
 - Initialize the rendering process
 
-【On going】
+【expect】
 
 - Life cycle merger strategy
+- vue 声明周期的实现原理
+- Mixin 的实现原理
+- Vue 中依赖收集是如何实现的
+- Vue 中不是如何实现异步更新数据的
+- Vue 的组件系统是如何实现的
+- Watch的实现原理
+- Vue中DOM-DIFF的原理
+- 实现Vue的插件机制: Vue.use / Vue.install
+- VueRouter 和 Vuex
+- Vue配合Jest单元测试
+- Vue SSR
+
 
 ## Introduction
 
