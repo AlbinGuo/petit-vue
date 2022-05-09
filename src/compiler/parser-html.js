@@ -17,72 +17,70 @@
  var doctype = /^<!DOCTYPE [^>]+>/i;
  var defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g; // {{ name }}
  
-
- let root = null    // AST语法树的树根
- let currentParent  // 标识当前父节点
- let stack = []     // 栈，用于存储父节点
- const ELEMENT_TYPE = 1 // 元素类型
- const TEXT_TYPE = 3  // 文本类型
- function createASTElement(tagName, attrs) {
-    return {
-      tag: tagName,
-      type: ELEMENT_TYPE,
-      children: [],
-      attrs,
-      parent: null  
-    }
- }  
-
-
-/**
- * 解析开始标签
- * @param {*} tagName 
- * @param {*} attrs 
- */
- function start (tagName, attrs) {
-    // 遇到开始标签就创建一个AST元素
-    let element = createASTElement(tagName, attrs)
-    if(!root){
-      root = element
-    }
-    currentParent = element // 把当前元素标记成AST树的父节点
-    stack.push(element) // 把当前元素放入栈中
- }
-
-
- /**
-  * 处理文本
-  * @param {text} text 
-  */
- function chars(text) {
-    text = text.replace(/\s/g, '')
-    if(text){
-      currentParent.children.push({
-        type: TEXT_TYPE,
-        text
-      })
-    }
- }
-
-
- /**
-  * 闭合标签
-  * @param {} tagName 
-  */
- // eg. <div><p></p></div>
- function end(tagName) {
-    // 拿到的是AST对象
-    let element = stack.pop()
-    // 标识当前标签是属于这个div的子元素
-    currentParent = stack[stack.length - 1]
-    if(currentParent){
-      element.parent = currentParent
-      currentParent.children.push(element) //实现了树的父子关系
-    }
- }
-
-
  export function parseHTML (html) {
+  let root = null    // AST语法树的树根
+  let currentParent  // 标识当前父节点
+  let stack = []     // 栈，用于存储父节点
+  const ELEMENT_TYPE = 1 // 元素类型
+  const TEXT_TYPE = 3  // 文本类型
+  function createASTElement(tagName, attrs) {
+     return {
+       tag: tagName,
+       type: ELEMENT_TYPE,
+       children: [],
+       attrs,
+       parent: null  
+     }
+  }  
+ 
+ 
+ /**
+  * 解析开始标签
+  * @param {*} tagName 
+  * @param {*} attrs 
+  */
+  function start (tagName, attrs) {
+     // 遇到开始标签就创建一个AST元素
+     let element = createASTElement(tagName, attrs)
+     if(!root){
+       root = element
+     }
+     currentParent = element // 把当前元素标记成AST树的父节点
+     stack.push(element) // 把当前元素放入栈中
+  }
+ 
+ 
+  /**
+   * 处理文本
+   * @param {text} text 
+   */
+  function chars(text) {
+     text = text.replace(/\s/g, '')
+     if(text){
+       currentParent.children.push({
+         type: TEXT_TYPE,
+         text
+       })
+     }
+  }
+ 
+ 
+  /**
+   * 闭合标签
+   * @param {} tagName 
+   */
+  // eg. <div><p></p></div>
+  function end(tagName) {
+     // 拿到的是AST对象
+     let element = stack.pop()
+     // 标识当前标签是属于这个div的子元素
+     currentParent = stack[stack.length - 1]
+     if(currentParent){
+       element.parent = currentParent
+       currentParent.children.push(element) //实现了树的父子关系
+     }
+  }
+
     // 循环解析html
     while(html){
       let textEnd = html.indexOf('<')
