@@ -7,7 +7,8 @@ import { mergeOptions } from "./util/index.js";
 export function initMixin(Vue) {
   Vue.prototype._init = function(options) {
     const vm = this;
-    // vm.constructoor = Vue; 将用户传递的options和全局的进行合并
+    // 将用户传递的options和全局的进行合并
+    // vm.constructoor = Vue; 谁调的_init，vm.constructor就是谁
     vm.$options = mergeOptions(vm.constructor.options, options)
     callHook(vm, 'beforeCreate')
     // 状态初始化: 初始化顺序：props-methods-data-computed-watch
