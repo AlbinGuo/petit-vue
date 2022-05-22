@@ -24,3 +24,33 @@ export function proxy(vm, source, key) {
     }
   })
 }
+
+/**
+ * options的合并
+ */
+ export function mergeOptions(parent, child) {
+    const options = {}
+    for(let key in parent) {
+      mergeField(key);
+    }
+
+    for(let key in child) {
+      if(!parent.hasOwnProperty(key)) {
+        mergeField(key);
+      }
+    }
+
+    function mergeField (key) {
+      if(typeof parent[key] === 'object' && typeof child[key] === 'object') {
+        options = {
+          ...parent[key],
+          ...child[key]
+        }
+      }else if(child[key] == null) {
+        options[key] = parent[key];
+      }else{
+        options[key] = child[key];
+      }
+    }
+    return options
+ }
