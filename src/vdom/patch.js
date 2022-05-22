@@ -9,6 +9,9 @@ export function patch(oldVnode, vnode) {
   parentElm.insertBefore(el, oldElm.nextSibling)
   // 删除老元素
   parentElm.removeChild(oldElm)
+
+  // 返回渲染完成的结果
+  return el
 }
 
 // 根据虚拟节点创建真实节点

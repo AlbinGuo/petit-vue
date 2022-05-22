@@ -1,14 +1,19 @@
 import { initState } from "./state";
 import { compileToFunction } from "./compiler/index.js";
-import { mountComponent } from "./lifecycle"
+import { mountComponent, callHook } from "./lifecycle"
+import { mergeOptions } from "./util/index.js";
 
 // 在Vue原型上绑定私有的初始化方法_init
 export function initMixin(Vue) {
   Vue.prototype._init = function(options) {
     const vm = this;
-    vm.$options = options;
+    // vm.constructoor = Vue; 将用户传递的options和全局的进行合并
+    vm.$options = mergeOptions(vm.constructor.options, options)
+    callHook(vm, 'beforeCreate')
     // 状态初始化: 初始化顺序：props-methods-data-computed-watch
     initState(vm);
+
+    callHook(vm, 'created')
     // 如果用户传递了el, 则实现挂载流程，将页面渲染出来
     if(vm.$options.el){
       // 挂载模板

@@ -29,6 +29,18 @@
             height: {height: 180}
           };
         },
+        beforeCreate() {
+          console.log('beforeCreate---index', this.age);
+        },
+        created() {
+          console.log('created---index', this.age);
+        },
+        beforeMount() {
+          console.log('beforeMount---index', this.$el);
+        },
+        mounted() {
+          console.log('mounted---index', this.$el);
+        },
         computed() {},
         watch() {}
       });
