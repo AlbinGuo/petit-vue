@@ -66,6 +66,7 @@ export function defineReactive(obj, key, value) {
       if(Dep.target){
         // 如果当前watcher存在，则将当前属性所对应的watcher添加到dep中
         dep.depend()
+        console.log('------------notify-----------------',  dep.subs)
       }  
       return value;
     },
@@ -74,8 +75,6 @@ export function defineReactive(obj, key, value) {
       // 如果set一个对象也要进行劫持,observe
       observe(newVal);
       value = newVal;
-      console.log("试图已更新");
-
       dep.notify(); // 通知该属性依赖的的watcher进行更新操作
     }
   });

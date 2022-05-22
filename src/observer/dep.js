@@ -7,8 +7,14 @@ class Dep {
     this.subs = []  // wathcer栈
   }
 
+  addSub(watcher) {
+    this.subs.push(watcher)
+  }
+
   depend() {
-    this.subs.push(Dep.target)
+    // 让这个wathcer记住当前的dep
+    Dep.target.addDep(this)
+    // this.subs.push(Dep.target)
   }
   notify() {
     this.subs.forEach(watcher => watcher.update())

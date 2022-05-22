@@ -22,11 +22,11 @@ A small and delicate Vue.
 - Initialize the rendering process
 - Life cycle merger strategy
 - vue 声明周期的实现原理
+- Mixin 的实现原理
+- Vue 中依赖收集是如何实现的
 
 【expect】
 
-- Mixin 的实现原理
-- Vue 中依赖收集是如何实现的
 - Vue 中不是如何实现异步更新数据的
 - Vue 的组件系统是如何实现的
 - Watch 的实现原理
