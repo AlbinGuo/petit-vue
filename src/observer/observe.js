@@ -4,6 +4,7 @@
  */
 import { isObject, def } from "../util/index";
 import {arrayMethods} from "./array";
+import Dep from "./dep";
 
 class Observer {
   constructor(value) {
@@ -54,12 +55,18 @@ class Observer {
 }
 
 export function defineReactive(obj, key, value) {
+  let dep = new Dep()
   // 递归实现深度劫持
   observe(value);
   Object.defineProperty(obj, key, {
     enumerable: true,
     configurable: true,
     get: function reactiveGetter() {
+      // 每个属性都对应着自己的watcher
+      if(Dep.target){
+        // 如果当前watcher存在，则将当前属性所对应的watcher添加到dep中
+        dep.depend()
+      }  
       return value;
     },
     set: function reactiveSetter(newVal) {
@@ -68,6 +75,8 @@ export function defineReactive(obj, key, value) {
       observe(newVal);
       value = newVal;
       console.log("试图已更新");
+
+      dep.notify(); // 通知该属性依赖的的watcher进行更新操作
     }
   });
 }
