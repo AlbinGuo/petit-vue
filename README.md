@@ -49,6 +49,8 @@ npm install petit-vue
 
 ## Structure
 
+> The directory structure refers to the source code of Vue2.\*, which is consistent with the source code structure of Vue
+
 ```
 
 src
