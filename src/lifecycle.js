@@ -19,6 +19,7 @@ export function mountComponent(vm, el) {
   // vm._update将虚拟dom转为真实dom，并插入到页面中
   callHook(vm, 'beforeMount')
   let updateComponent = () => { // 无论是渲染还是更新都会调用
+    console.log('---------udapte')
     vm._update(vm._render())
   }
   // 渲染Watchr 每个组件都有一个watcher

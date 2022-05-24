@@ -30,11 +30,31 @@ class Watcher {
   }
 
   update() {
-    console.log('------------------update--------------------')
+    queueWatcher(this)
+    // this.get()
+  }
+
+  run() {
     this.get()
   }
 
 }
+
+let queue = [] // 存放watcher的数组
+let has = {}
+function queueWatcher(watcher) {
+  const id = watcher.id
+  if(has[id] == null){
+    queue.push(watcher)
+    has[id] = true
+    setTimeout(() => {
+      queue.forEach(watcher => watcher.run())
+      queue = []
+      has = {}
+    }, 0);
+  }
+}
+
 
 // 在模板中取值时，会进行依赖收集，再更改数据时会进行对应的watcher调用更新操作，
 // dep和watcher是一个多对多的关系，dep里存放着相关的watcher，watcher里存放着相关的dep，是一个观察者模式
