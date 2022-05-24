@@ -36,4 +36,6 @@ class Watcher {
 
 }
 
+// 在模板中取值时，会进行依赖收集，再更改数据时会进行对应的watcher调用更新操作，
+// dep和watcher是一个多对多的关系，dep里存放着相关的watcher，watcher里存放着相关的dep，是一个观察者模式
 export default Watcher
