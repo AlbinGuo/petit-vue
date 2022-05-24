@@ -23,11 +23,12 @@ A small and delicate Vue.
 - Life cycle merger strategy
 - vue 声明周期的实现原理
 - Mixin 的实现原理
-- Vue 中依赖收集是如何实现的
-
+- Vue 中watcher监听【数据更新&渲染】
+- Vue 中依赖收集实现
+- Vue 中是如何实现异步更新数据的
+- nextTick的实现
 【expect】
 
-- Vue 中不是如何实现异步更新数据的
 - Vue 的组件系统是如何实现的
 - Watch 的实现原理
 - Vue 中 DOM-DIFF 的原理
