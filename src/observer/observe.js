@@ -8,6 +8,7 @@ import Dep from "./dep";
 
 class Observer {
   constructor(value) {
+    this.dep = new Dep()
     // 给初始对象或者，每一个数组中push、unshift进来的对象添加__ob__属性
     // value.__ob__ = this 
     def(value, '__ob__', this)
@@ -55,9 +56,10 @@ class Observer {
 }
 
 export function defineReactive(obj, key, value) {
+  //给数组使用
   let dep = new Dep()
   // 递归实现深度劫持
-  observe(value);
+  let childOb = observe(value);
   Object.defineProperty(obj, key, {
     enumerable: true,
     configurable: true,
@@ -66,7 +68,11 @@ export function defineReactive(obj, key, value) {
       if(Dep.target){
         // 如果当前watcher存在，则将当前属性所对应的watcher添加到dep中
         dep.depend()
-        console.log('------------notify-----------------',  dep.subs)
+        if(childOb){
+          // 收集了数组的相关依赖
+          childOb.dep.depend()
+        }
+
       }  
       return value;
     },

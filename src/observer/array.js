@@ -39,7 +39,8 @@ methodsToPatch.forEach(method => {
     // 对inserted进行观察
     console.log('inserted',inserted)
     if(inserted) ob.observerArray(inserted)
-    
+    // 用户调用了数组的push方法，需要通知观察者
+    ob.dep.notify()
     return result
   }
   
