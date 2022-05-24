@@ -71,6 +71,10 @@ export function defineReactive(obj, key, value) {
         if(childOb){
           // 收集了数组的相关依赖
           childOb.dep.depend()
+          // 如果是多级数组，则收集子数组的依赖
+          if(Array.isArray(value)) {
+            dependArray(value)
+          }
         }
 
       }  
@@ -84,6 +88,19 @@ export function defineReactive(obj, key, value) {
       dep.notify(); // 通知该属性依赖的的watcher进行更新操作
     }
   });
+}
+
+function dependArray (value) {
+  for(let i=0;i<value.length;i++) {
+    // 将数组中的每一项都取出来，数据变化后去更新视图
+    let current = value[i]
+    // 数组中数组【多级数组】的依赖收集
+    current.__ob__ && current.__ob__.dep.depend()
+    if(Array.isArray(current)) {
+      dependArray(current)
+    }
+
+  }
 }
 
 export function observe(data) {
