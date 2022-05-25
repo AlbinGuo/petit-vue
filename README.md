@@ -10,7 +10,8 @@ A small and delicate Vue.
 
 ## Schedule
 
-【Completed】
+### :lemon: Completed
+
 :white_check_mark: Data monitoring
 
 :white_check_mark: Data hijacking
@@ -41,7 +42,7 @@ A small and delicate Vue.
 
 :white_check_mark: nextTick的实现
 
-【Expected】
+### :rocket: Expected
 
 :white_medium_square: Vue 的组件系统是如何实现的
 
