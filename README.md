@@ -8,9 +8,9 @@ A small and delicate Vue.
   <a href="https://www.npmjs.com/package/petit-vue"><img src="https://img.shields.io/npm/v/petit-vue?color=729B1B&label="></a>
 <p>
 
-## schedule
+## Schedule
 
-【completed】
+【Completed】
 
 - Data monitoring
 - Data hijacking
@@ -27,7 +27,8 @@ A small and delicate Vue.
 - Vue 中依赖收集实现
 - Vue 中是如何实现异步更新数据的
 - nextTick的实现
-【expect】
+
+【Expect】
 
 - Vue 的组件系统是如何实现的
 - Watch 的实现原理
