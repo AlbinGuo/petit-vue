@@ -10,33 +10,51 @@ A small and delicate Vue.
 
 ## Schedule
 
-【Completed】
+:white_check_mark: Data monitoring
 
-- Data monitoring
-- Data hijacking
-- Template compilation
-- Html parser
-- Template convert to AST
-- Code generate
-- generate render function
-- Initialize the rendering process
-- Life cycle merger strategy
-- vue 声明周期的实现原理
-- Mixin 的实现原理
-- Vue 中watcher监听【数据更新&渲染】
-- Vue 中依赖收集实现
-- Vue 中是如何实现异步更新数据的
-- nextTick的实现
+:white_check_mark: Data hijacking
 
-【Expect】
+:white_check_mark: Template compilation
 
-- Vue 的组件系统是如何实现的
-- Watch 的实现原理
-- Vue 中 DOM-DIFF 的原理
-- 实现 Vue 的插件机制: Vue.use / Vue.install
-- VueRouter 和 Vuex
-- Vue 配合 Jest 单元测试
-- Vue SSR
+:white_check_mark: Html parser
+
+:white_check_mark: Template convert to AST
+
+:white_check_mark: Code generate
+
+:white_check_mark: generate render function
+
+:white_check_mark: Initialize the rendering process
+
+:white_check_mark: Life cycle merger strategy
+
+:white_check_mark: vue 声明周期的实现原理
+
+:white_check_mark: Mixin 的实现原理
+
+:white_check_mark: Vue 中watcher监听【数据更新&渲染】
+
+:white_check_mark: Vue 中依赖收集实现
+
+:white_check_mark: Vue 中是如何实现异步更新数据的
+
+:white_check_mark: nextTick的实现
+
+:white_medium_square: Vue 的组件系统是如何实现的
+
+:white_medium_square: Watch 的实现原理
+
+:white_medium_square: Vue 中 DOM-DIFF 的原理
+
+:white_medium_square: 实现 Vue 的插件机制: Vue.use / Vue.install
+
+:white_medium_square: VueRouter 和 Vuex
+
+:white_medium_square: Vue 配合 Jest 单元测试
+
+:white_medium_square: 测试覆盖率检测
+
+:white_medium_square: Vue SSR
 
 ## Introduction
 
