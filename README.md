@@ -10,6 +10,7 @@ A small and delicate Vue.
 
 ## Schedule
 
+【Completed】
 :white_check_mark: Data monitoring
 
 :white_check_mark: Data hijacking
@@ -39,6 +40,8 @@ A small and delicate Vue.
 :white_check_mark: Vue 中是如何实现异步更新数据的
 
 :white_check_mark: nextTick的实现
+
+【Expected】
 
 :white_medium_square: Vue 的组件系统是如何实现的
 
