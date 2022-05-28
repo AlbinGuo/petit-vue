@@ -16,55 +16,24 @@ A small and delicate Vue.
 
 > Petit-vue 是一个剔除了边缘 case 的小巧型 Vue，每行都添加了完善的注释，实现了 Vue2.+绝大多数功能；结构和 Vue 源码结构完全相同。
 
-## Features（功能）
 
-【completed】
-
-- Data monitoring（数据监听）
-- Data hijacking （数据劫持）
-- Template compilation （模板编译）
-- Html parser （HTML 解析）
-- Template convert to AST （模板转换为 AST 抽象语法树）
-- generate render function （生成渲染函数）
-- Life cycle merger strategy （生命周期合并策略）
-- vue 声明周期的实现原理 （生命周期实现原理）
-- Mixin 的实现原理（Mixin 实现原理）
-- Vue 中 watcher 监听（数据更新&渲染）
-- Vue 中依赖收集实现
-- Vue 中是如何实现异步更新数据的
-- nextTick 的实现
-
-  【expect】
-
-- Vue 的组件系统是如何实现的
-- Watch 的实现原理
-- Vue 中 DOM-DIFF 的原理
-- 实现 Vue 的插件机制: Vue.use / Vue.install
-- VueRouter 和 Vuex
-- Vue 配合 Jest 单元测试
-- Vue SSR
-
-## Schedule
+## 功能
 
 ### :lemon: Completed
 
-:white_check_mark: Data monitoring
+:white_check_mark: Data monitoring（数据监听）
 
-:white_check_mark: Data hijacking
+:white_check_mark: Data hijacking（数据劫持）
 
-:white_check_mark: Template compilation
+:white_check_mark: Template compilation（模板编译）
 
-:white_check_mark: Html parser
+:white_check_mark: Html parser（HTML 解析）
 
-:white_check_mark: Template convert to AST
+:white_check_mark: Template convert to AST（模板转换为 AST 抽象语法树）
 
-:white_check_mark: Code generate
+:white_check_mark: generate render function（生成渲染函数）
 
-:white_check_mark: generate render function
-
-:white_check_mark: Initialize the rendering process
-
-:white_check_mark: Life cycle merger strategy
+:white_check_mark: Life cycle merger strategy（生命周期合并策略）
 
 :white_check_mark: vue 声明周期的实现原理
 
