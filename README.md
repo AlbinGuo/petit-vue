@@ -12,10 +12,9 @@ A small and delicate Vue.
 
 > Petit-Vue 每一行都有详细的注释，可以帮你快速的精通 Vue.
 
-## Brief Introduction（简述）
+## Introduction （介绍）
 
 > Petit-vue 是一个剔除了边缘 case 的小巧型 Vue，每行都添加了完善的注释，实现了 Vue2.+绝大多数功能；结构和 Vue 源码结构完全相同。
-
 
 ## 功能
 
@@ -64,11 +63,6 @@ A small and delicate Vue.
 :white_medium_square: 测试覆盖率检测
 
 :white_medium_square: Vue SSR
-
-## Introduction （介绍）
-
-Petit-vue is a stripped-down version of the VUE framework based on Vue2.6+, removing all edge cases.</br>
-The main feature of it is to strip out the core logic in the Vue2.6 source code, leaving only the core logic, with detailed Chinese annotations and complete output to help you quickly understand the framework core operational process.
 
 ## Usage（用法）
 
